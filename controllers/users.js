@@ -17,7 +17,7 @@ function getUsers(req, res) {
 function getUser(req, res) {
     try {
         const username = req.params['username'];
-        const results = connect.getUsersCollection().findOne({userName: username});
+        const results = connect.getUsersCollection().find({userName: username});
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username',
@@ -27,7 +27,7 @@ function getUser(req, res) {
                 value: 'SuperChef'
             } */
         results.toArray().then((doc) => {
-            res.status(200).json(doc);
+            res.status(200).json(doc[0]);
         });
     } catch (err) {
         res.status(500).send(err);
