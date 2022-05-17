@@ -5,7 +5,7 @@
     "description": "This is an API Built to keep track of user recipes and user data",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "dry-river-36052.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "https"
