@@ -63,6 +63,7 @@ function updateUser(req, res) {
         const username = req.params['username'];
         const content = request.body;
         const contentString = JSON.stringify(content, null, 2);
+
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username and change contents with request body',
@@ -82,9 +83,8 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-    user.findOneAndUpdate({userName: username}, content, {new: true }, () => {
-        res.status(200).send(contentString);
-    });
+        doc = user.findOneAndUpdate({ userName: username }, content, { returnOriginal: false });
+        res.status(200).send(doc);
     } catch (err) {
         res.status(500).send(err);
     }
