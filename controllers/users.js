@@ -17,7 +17,7 @@ function getUsers(req, res) {
 function getUser(req, res) {
     try {
         const username = req.params['username'];
-        const results = connect.getUsersCollection().find({username: username});
+        const results = connect.getUsersCollection().findOne({userName: username});
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username',
