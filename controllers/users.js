@@ -27,7 +27,7 @@ function getUser(req, res) {
                 value: 'SuperChef'
             } */
         results.toArray().then((doc) => {
-            res.status(200).json(doc[0]);
+            res.status(200).json(doc);
         });
     } catch (err) {
         res.status(500).send(err);
