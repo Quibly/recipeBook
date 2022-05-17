@@ -10,4 +10,4 @@ const doc = {
 };
 
 const outputFile = './swagger/swagger-output.json';
-const endpointsFiles = ['./path/endpointsUser.js', './path/endpointsBook.js'];
+const endpointsFiles = ['./app.js', './routes/users.js', './routes/recipes.js'];

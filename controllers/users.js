@@ -1,0 +1,113 @@
+let connect = require('../db/connect');
+let user = require('../models/users');
+
+// function to get all Users in the users collection
+function getUsers(req, res) {
+    try {
+        const results = connect.getUsersCollection().find();
+        results.toArray().then((doc) => {
+            res.status(200).json(doc);
+        });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+//function to get one user from the users collection using the username
+function getUser(req, res) {
+    try {
+        const username = req.params['username'];
+        const results = connect.getUsersCollection().find({username: username});
+        /*  #swagger.parameters['username'] = {
+                in: 'path',
+                description: 'Get a specific user with the username',
+                required: true,
+                type: String,
+                example: 'SuperChef',
+                value: 'SuperChef'
+            } */
+        results.toArray().then((doc) => {
+            res.status(200).json(doc[0]);
+        });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+//function to create a new user
+function createUser(req, res) {
+    try {
+        const newUser = new user(req.body);
+        const userString = JSON.stringify(newUser, null, 2);
+        /*  #swagger.parameters['body'] = {
+                in: 'body',
+                description: 'Add a new user using request body',
+                schema: {
+                    $fName: 'Jon',
+                    $lName: 'Doe',
+                    $email: 'test@email.com',
+                    $username: 'NewChef',
+                    $password: 'P@ssword1'
+                }
+        } */
+        newUser.save();
+        res.status(200).send(userString);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+//function to update a user
+function updateUser(req, res) {
+    try {
+        const username = req.params['username'];
+        const content = request.body;
+        const contentString = JSON.stringify(content, null, 2);
+        /*  #swagger.parameters['username'] = {
+                in: 'path',
+                description: 'Get a specific user with the username and change contents with request body',
+                required: true,
+                type: String,
+                example: 'SuperChef',
+                value: 'SuperChef'
+        }
+        #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Update a user using request body',
+            schema: {
+                $fName: 'Jon',
+                $lName: 'Doe',
+                $email: 'test@email.com',
+                $username: 'SuperChef',
+                $password: 'P@ssword1'
+            }
+        } */
+    user.findOneAndUpdate({username: username}, content, {new: true }, () => {
+        res.status(200).send(contentString);
+    });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+//function to delete a user using the username
+function deleteUser(req, res) {
+    try {
+        const username = req.params['username'];
+        /*  #swagger.parameters['username'] = {
+                in: 'path',
+                description: 'Get a specific user by username and delete it from the database.',
+                required: true,
+                type: String,
+                example: 'SuperChef',
+                value: 'SuperChef'
+        } */
+        user.findOneAndDelete({username: username}, () => {
+            res.status(200).send(`Successfully Delete User': ${username}`);
+        })
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+module.exports = { getUsers, getUser, createUser, updateUser, deleteUser };
