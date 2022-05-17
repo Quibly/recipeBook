@@ -61,7 +61,8 @@ function createUser(req, res) {
 function updateUser(req, res) {
     try {
         const username = req.params['username'];
-        const content = request.body;
+        let filter = { userName: username };
+        const content = req.body;
         const contentString = JSON.stringify(content, null, 2);
 
         /*  #swagger.parameters['username'] = {
@@ -83,7 +84,7 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-        user.findOneAndUpdate({ userName: username }, content, { returnOriginal: false });
+        user.findOneAndUpdate(filter, content, { returnOriginal: false });
         res.status(200).send(contentString);
     } catch (err) {
         res.status(500).send(err);
