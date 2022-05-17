@@ -104,7 +104,7 @@ function deleteUser(req, res) {
                 value: 'SuperChef'
         } */
         user.findOneAndDelete({userName: username}, () => {
-            res.status(200).send(`Successfully Delete User': ${username}`);
+            res.status(200).send(`Successfully Delete User: ${username}`);
         })
     } catch (err) {
         res.status(500).send(err);
