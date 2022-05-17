@@ -83,7 +83,7 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-        doc = user.findOneAndUpdate({ userName: username }, content, { returnOriginal: false });
+        const doc = user.findOneAndUpdate({ userName: username }, content, { returnOriginal: false });
         res.status(200).send(doc);
     } catch (err) {
         res.status(500).send(err);
