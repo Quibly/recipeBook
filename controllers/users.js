@@ -46,7 +46,7 @@ function createUser(req, res) {
                     $fName: 'Jon',
                     $lName: 'Doe',
                     $email: 'test@email.com',
-                    $username: 'NewChef',
+                    $userName: 'NewChef',
                     $password: 'P@ssword1'
                 }
         } */
@@ -78,11 +78,11 @@ function updateUser(req, res) {
                 $fName: 'Jon',
                 $lName: 'Doe',
                 $email: 'test@email.com',
-                $username: 'SuperChef',
+                $userName: 'SuperChef',
                 $password: 'P@ssword1'
             }
         } */
-    user.findOneAndUpdate({username: username}, content, {new: true }, () => {
+    user.findOneAndUpdate({userName: username}, content, {new: true }, () => {
         res.status(200).send(contentString);
     });
     } catch (err) {
@@ -102,7 +102,7 @@ function deleteUser(req, res) {
                 example: 'SuperChef',
                 value: 'SuperChef'
         } */
-        user.findOneAndDelete({username: username}, () => {
+        user.findOneAndDelete({userName: username}, () => {
             res.status(200).send(`Successfully Delete User': ${username}`);
         })
     } catch (err) {

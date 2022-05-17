@@ -46,7 +46,7 @@
                   "type": "string",
                   "example": "test@email.com"
                 },
-                "username": {
+                "userName": {
                   "type": "string",
                   "example": "NewChef"
                 },
@@ -59,7 +59,7 @@
                 "fName",
                 "lName",
                 "email",
-                "username",
+                "userName",
                 "password"
               ]
             }
@@ -127,7 +127,7 @@
                   "type": "string",
                   "example": "test@email.com"
                 },
-                "username": {
+                "userName": {
                   "type": "string",
                   "example": "SuperChef"
                 },
@@ -140,7 +140,7 @@
                 "fName",
                 "lName",
                 "email",
-                "username",
+                "userName",
                 "password"
               ]
             }
