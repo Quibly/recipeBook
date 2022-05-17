@@ -1,0 +1,275 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe Book API",
+    "description": "This is an API Built to keep track of user recipes and user data",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add a new user using request body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fName": {
+                  "type": "string",
+                  "example": "Jon"
+                },
+                "lName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@email.com"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "NewChef"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "P@ssword1"
+                }
+              },
+              "required": [
+                "fName",
+                "lName",
+                "email",
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Get a specific user with the username",
+            "example": "SuperChef",
+            "value": "SuperChef"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Get a specific user with the username and change contents with request body",
+            "example": "SuperChef",
+            "value": "SuperChef"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update a user using request body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fName": {
+                  "type": "string",
+                  "example": "Jon"
+                },
+                "lName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@email.com"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "SuperChef"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "P@ssword1"
+                }
+              },
+              "required": [
+                "fName",
+                "lName",
+                "email",
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "Get a specific user by username and delete it from the database.",
+            "example": "SuperChef",
+            "value": "SuperChef"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recipes/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add a new recipe using request body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Grilled Cheese"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Grilled sandwiches are awesome"
+                },
+                "imageURL": {
+                  "type": "string",
+                  "example": "./images/image.png"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "example": [
+                    "bread",
+                    "cheese",
+                    "butter"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "steps": {
+                  "type": "string",
+                  "example": "How to make a grilled cheese"
+                },
+                "categories": {
+                  "type": "array",
+                  "example": [
+                    "lunch",
+                    "dinner"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "methods": {
+                  "type": "array",
+                  "example": [
+                    "grill",
+                    "oven",
+                    "pan"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "imageURL",
+                "ingredients",
+                "steps",
+                "categories",
+                "methods"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
