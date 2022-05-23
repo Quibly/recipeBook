@@ -3,7 +3,8 @@ dotenv.config();
 const mongoose = require('mongoose');
 
 let _client;
-let _collection;
+let _usersCollection;
+let _recipesCollection;
 
 // initialize database
 const initDB = () => {
