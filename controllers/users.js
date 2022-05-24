@@ -71,7 +71,7 @@ function updateUser(req, res) {
 
         // res.status(200).send(contentString);
 
-        user.findOneAndUpdate({ userName: username }, newUser, () => {
+        user.findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
             res.status(200).send(`Successfully Updated User: ${username}
             ${newUser}
             ${username}`);
