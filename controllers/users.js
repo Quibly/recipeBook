@@ -71,7 +71,7 @@ async function updateUser(req, res) {
 
         // res.status(200).send(contentString);
 
-        connect.getUsersCollection().findOneAndReplace({ userName: username }, newUser, { upsert: true }, () => {
+        user.findOneAndReplace({ userName: { username } }, newUser, { upsert: true }, () => {
             res.status(200).send(`Successfully Updated User: ${username}
             ${newUser}
             ${username}`);
