@@ -60,9 +60,8 @@ function createUser(req, res) {
 //function to update a user
 function updateUser(req, res) {
     try {
-        const newUser = new user(req.body);
-        const username = req.params['username'];
-        let filter = { userName: username };
+        const { userName: username } = req.params['username'];
+        // let filter = { userName: username };
         const content = req.body;
         const contentString = JSON.stringify(content, null, 2);
 
@@ -85,7 +84,7 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-        newUser.findOneAndUpdate(filter, content, { returnOriginal: false });
+        user.findOneAndUpdate(username, content, { returnOriginal: false });
         res.status(200).send(contentString);
     } catch (err) {
         res.status(500).send(err);
