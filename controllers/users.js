@@ -63,7 +63,7 @@ async function updateUser(req, res) {
         const username = req.params['username'];
         let result = await connect.getUsersCollection().findOne({ userName: username });
         // let filter = { userName: username };
-        const newUser = new user(JSON.parse(req.body));
+        const newUser = new user(req.body);
         result = newUser;
         result.save();
         const contentString = JSON.stringify(req.body, null, 2);
