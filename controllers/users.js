@@ -61,10 +61,11 @@ function createUser(req, res) {
 async function updateUser(req, res) {
     try {
         const username = req.params['username'];
-        let results = await connect.getUsersCollection().findOne({ userName: username });
+        let result = await connect.getUsersCollection().findOne({ userName: username });
         // let filter = { userName: username };
-        results = req.body;
-        results.save();
+        const newUser = new user(JSON.parse(req.body));
+        result = newUser;
+        result.save();
         const contentString = JSON.stringify(req.body, null, 2);
         // const newUser = new user(req.body);
 
