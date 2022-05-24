@@ -61,15 +61,19 @@ function createUser(req, res) {
 async function updateUser(req, res) {
     try {
         const username = req.params['username'];
-        let result = await connect.getUsersCollection().findOne({ userName: username });
+        // let result = await connect.getUsersCollection().findOne({ userName: username });
         // let filter = { userName: username };
         const newUser = new user(req.body);
-        result = newUser;
-        result.save();
-        const contentString = JSON.stringify(req.body, null, 2);
+        // result = newUser;
+        // result.save();
+        // const contentString = JSON.stringify(req.body, null, 2);
         // const newUser = new user(req.body);
 
-        res.status(200).send(contentString);
+        // res.status(200).send(contentString);
+
+        user.findOneAndUpdate({ userName: username }, { newUser }, () => {
+            res.status(200).send(`Successfully Updated User: ${username}`);
+        });
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username and change contents with request body',
