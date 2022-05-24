@@ -72,7 +72,6 @@ function updateUser(req, res) {
         // res.status(200).send(contentString);
 
         connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
-            this.save();
             res.status(200).send(`Successfully Updated User: ${username}
             ${newUser}
             ${username}`);
