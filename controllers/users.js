@@ -72,11 +72,11 @@ function updateUser(req, res) {
         // res.status(200).send(contentString);
 
         connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
+            this.save();
             res.status(200).send(`Successfully Updated User: ${username}
             ${newUser}
             ${username}`);
         });
-        user.save();
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username and change contents with request body',
