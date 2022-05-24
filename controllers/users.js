@@ -58,13 +58,17 @@ function createUser(req, res) {
 }
 
 //function to update a user
-function updateUser(req, res) {
+async function updateUser(req, res) {
     try {
-        const username = req.params;
-        let filter = { userName: username };
-        const content = req.body;
-        const contentString = JSON.stringify(content, null, 2);
+        const username = req.params['username'];
+        let results = await connect.getUsersCollection().findOne({ userName: username });
+        // let filter = { userName: username };
+        results = req.body;
+        results.save();
+        const contentString = JSON.stringify(req.body, null, 2);
+        // const newUser = new user(req.body);
 
+        res.status(200).send(contentString);
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user with the username and change contents with request body',
@@ -84,8 +88,7 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-        user.findOneAndUpdate(filter, content, { returnOriginal: false });
-        res.status(200).send(contentString);
+        // user.findOneAndUpdate(filter, content, { returnOriginal: false });
     } catch (err) {
         res.status(500).send(err);
     }
