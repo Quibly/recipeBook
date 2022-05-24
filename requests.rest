@@ -1,0 +1,37 @@
+//GET all users
+GET http://dry-river-36052.herokuapp.com/users/
+###
+
+//Create a user
+POST http://dry-river-36052.herokuapp.com/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "fName": "Jon",
+    "lName": "Doe",
+    "email": "test@email.com",
+    "userName": "NewChef",
+    "password": "P@ssword1"
+}
+###
+
+//GET a specific user
+GET http://dry-river-36052.herokuapp.com/users/SuperChef
+###
+
+//Update a users information
+PUT http://dry-river-36052.herokuapp.com/users/SuperChef HTTP/1.1
+Content-Type: application/json
+
+{
+    "fName": "Jon",
+    "lName": "Deere",
+    "email": "test@email.com",
+    "userName": "SuperChef",
+    "password": "P@ssword1"
+}
+###
+
+//GET a specific user
+GET http://dry-river-36052.herokuapp.com/users/SuperChef
+###
