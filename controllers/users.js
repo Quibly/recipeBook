@@ -72,7 +72,8 @@ async function updateUser(req, res) {
         // res.status(200).send(contentString);
 
         connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, () => {
-            res.status(200).send(`Successfully Updated User: ${username}`);
+            res.status(200).send(`Successfully Updated User: ${username}
+            ${JSON.parse(req.body)}`);
         });
         /*  #swagger.parameters['username'] = {
                 in: 'path',
