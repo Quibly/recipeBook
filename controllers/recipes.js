@@ -17,6 +17,7 @@ function getRecipes(req, res) {
 function createRecipe(req, res) {
     try {
         const newRecipe = new recipe(req.body);
+        console.log(newRecipe);
         const recipeString = JSON.stringify(newRecipe, null, 2);
         /*  #swagger.parameters['body'] = {
                 in: 'body',

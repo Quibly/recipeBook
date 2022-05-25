@@ -2,7 +2,6 @@
 let port = process.env.PORT || 8080;
 let express = require('express');
 let server = express();
-// let cors = require('cors');
 let swaggerUI = require('swagger-ui-express');
 let swaggerDocument = require('./swagger/swagger-output.json');
 
@@ -17,7 +16,7 @@ server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key, Content-Disposition');
-    // res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
 });

@@ -1,5 +1,6 @@
 let connect = require('../db/connect');
 let user = require('../models/users');
+let userAuto = require('../models/usersAuto');
 
 // function to get all Users in the users collection
 function getUsers(req, res) {
@@ -37,7 +38,8 @@ function getUser(req, res) {
 //function to create a new user
 function createUser(req, res) {
     try {
-        const newUser = new user(req.body);
+        const newUser = new userAuto(req.body);
+        console.log(newUser);
         const userString = JSON.stringify(newUser, null, 2);
         /*  #swagger.parameters['body'] = {
                 in: 'body',
