@@ -89,7 +89,7 @@ function updateUser(req, res) {
         const newUser = new user(req.body);
 
         connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
-            res.status(200).send(`{"Successfully Delete User": "${username}"}`);
+            res.status(200).send(`{"Successfully Updated User": "${username}"}`);
         });
         /*  #swagger.parameters['username'] = {
                 in: 'path',
