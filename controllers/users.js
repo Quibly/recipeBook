@@ -79,10 +79,12 @@ function createUser(req, res) {
 
 //function to update a user
 function updateUser(req, res) {
+    let error = '';
     try {
         const username = req.params['username'];
-        if (!/^[a-zA-z]$/i.test(username)) {
-            throw createError(400, 'Username is Alpha in path');
+        if (!/^[a-zA-Z]+$/.test(username)) {
+            error = createError(400, 'Username is required as Alpha in path');
+            throw error;
         }
         const newUser = new user(req.body);
 
@@ -111,7 +113,11 @@ function updateUser(req, res) {
             }
         } */
     } catch (err) {
-        res.status(500).send(err);
+        if (error !== '') {
+            res.status(400).send(error);
+        } else {
+            res.status(500).send(err);
+        }
     }
 }
 
