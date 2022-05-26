@@ -1,6 +1,7 @@
 let connect = require('../db/connect');
 let user = require('../models/users');
 let userAuto = require('../models/usersAuto');
+let createError = require('http-errors');
 
 // function to get all Users in the users collection
 function getUsers(req, res) {
@@ -16,8 +17,13 @@ function getUsers(req, res) {
 
 //function to get one user from the users collection using the username
 function getUser(req, res) {
+    let error = '';
     try {
         const username = req.params['username'];
+        if (!/^[a-zA-Z]+$/.test(username)) {
+            error = createError(400, 'Username is required as Alpha in path');
+            throw error;
+        }
         const results = connect.getUsersCollection().find({ userName: username });
         /*  #swagger.parameters['username'] = {
                 in: 'path',
@@ -31,16 +37,30 @@ function getUser(req, res) {
             res.status(200).json(doc[0]);
         });
     } catch (err) {
-        res.status(500).send(err);
+        if (error !== '') {
+            res.status(400).send(error);
+        } else {
+            res.status(500).send(err);
+        }
     }
 }
 
 //function to create a new user
 function createUser(req, res) {
     try {
-        const newUser = new userAuto(req.body);
-        console.log(newUser);
-        const userString = JSON.stringify(newUser, null, 2);
+        let newUser = new userAuto(req.body);
+        userAuto.exists({ userName: newUser.userName }, function (err, doc) {
+            if (err) {
+                res.send(err);
+            } else if (doc !== null) {
+                const newerror = createError(400, 'Username already exists');
+                res.status(400).send(newerror);
+            } else {
+                const userString = JSON.stringify(newUser, null, 2);
+                newUser.save();
+                res.status(200).send(userString);
+            }
+        });
         /*  #swagger.parameters['body'] = {
                 in: 'body',
                 description: 'Add a new user using request body',
@@ -52,8 +72,6 @@ function createUser(req, res) {
                     $password: 'P@ssword1'
                 }
         } */
-        newUser.save();
-        res.status(200).send(userString);
     } catch (err) {
         res.status(500).send(err);
     }
@@ -63,15 +81,10 @@ function createUser(req, res) {
 function updateUser(req, res) {
     try {
         const username = req.params['username'];
-        // let result = await connect.getUsersCollection().findOne({ userName: username });
-        // let filter = { userName: username };
+        if (!/^[a-zA-z]$/i.test(username)) {
+            throw createError(400, 'Username is Alpha in path');
+        }
         const newUser = new user(req.body);
-        // result = newUser;
-        // result.save();
-        // const contentString = JSON.stringify(req.body, null, 2);
-        // const newUser = new user(req.body);
-
-        // res.status(200).send(contentString);
 
         connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
             res.status(200).send(`Successfully Updated User: ${username}
@@ -97,7 +110,6 @@ function updateUser(req, res) {
                 $password: 'P@ssword1'
             }
         } */
-        // user.findOneAndUpdate(filter, content, { returnOriginal: false });
     } catch (err) {
         res.status(500).send(err);
     }
@@ -105,8 +117,13 @@ function updateUser(req, res) {
 
 //function to delete a user using the username
 function deleteUser(req, res) {
+    let error = '';
     try {
         const username = req.params['username'];
+        if (!/^[a-zA-Z]+$/.test(username)) {
+            error = createError(400, 'Username is required as Alpha in path');
+            throw error;
+        }
         /*  #swagger.parameters['username'] = {
                 in: 'path',
                 description: 'Get a specific user by username and delete it from the database.',
@@ -115,11 +132,21 @@ function deleteUser(req, res) {
                 example: 'SuperChef',
                 value: 'SuperChef'
         } */
-        user.findOneAndDelete({ userName: username }, () => {
-            res.status(200).send(`Successfully Delete User: ${username}`);
+        user.findOneAndDelete({ userName: username }, (err, docs) => {
+            if (err) {
+                error = createError(400, 'There was an error with the delete request.');
+                throw error;
+            } else {
+                docs = JSON.stringify(docs, null, 2);
+                res.status(200).send(`{"Successfully Delete User": ${docs}}`);
+            }
         });
     } catch (err) {
-        res.status(500).send(err);
+        if (error !== '') {
+            res.status(400).send(error);
+        } else {
+            res.status(500).send(err);
+        }
     }
 }
 

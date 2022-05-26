@@ -14,7 +14,13 @@ router.post('/', userValidation, (req, res) => {
     }
     usersControl.createUser(req, res);
 });
-router.put('/:username', usersControl.updateUser);
+router.put('/:username', userValidation, (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    usersControl.updateUser(req, res);
+}); //usersControl.updateUser);
 router.delete('/:username', usersControl.deleteUser);
 
 module.exports = router;
