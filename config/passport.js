@@ -11,7 +11,7 @@ module.exports = function (passport) {
             {
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                callbackURL: '/auth/google/callback'
+                callbackURL: 'https://dry-river-36052.herokuapp.com/auth/google/callback'
             },
             // eslint-disable-next-line no-unused-vars
             async (accessToken, refreshToken, profile, done) => {
