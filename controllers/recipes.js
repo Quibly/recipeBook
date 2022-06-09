@@ -30,7 +30,6 @@ function createRecipe(req, res) {
                 res.status(200).send(recipeString);
             }
         });
-        // const recipeString = JSON.stringify(newRecipe, null, 2);
         /*  #swagger.parameters['body'] = {
                 in: 'body',
                 description: 'Add a new recipe using request body',
@@ -44,8 +43,6 @@ function createRecipe(req, res) {
                     $methods: ['grill', 'oven', 'pan']
                 }
         } */
-        // newRecipe.save();
-        // res.status(200).send(recipeString);
     } catch (err) {
         res.status(500).send(err);
     }
