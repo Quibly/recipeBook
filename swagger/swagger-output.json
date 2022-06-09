@@ -20,7 +20,7 @@
     }
   },
   "security": {
-    "google_id_token": ["read"]
+    "google_id_token": []
   },
   "paths": {
     "/users/": {
