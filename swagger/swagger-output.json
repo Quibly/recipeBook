@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Recipe Book API",
-    "description": "This is an API Built to keep track of user recipes and user data<br><a href='https://dry-river-36052.herokuapp.com/auth/logout'>Logout User</a>",
+    "description": "This is an API Built to keep track of user recipes and user data<br><br><a href='https://dry-river-36052.herokuapp.com/'>Login User</a><br><br><a href='https://dry-river-36052.herokuapp.com/auth/logout'>Logout User</a>",
     "version": "1.0.0"
   },
   "host": "dry-river-36052.herokuapp.com",
