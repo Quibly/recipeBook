@@ -15,7 +15,8 @@ router.get('/', ensureGuest, (req, res) => {
 router.get('/dashboard', ensureAuth, (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.render('dashboard', {
-        name: req.user.firstName
+        name: req.user.firstName,
+        image: req.user.image
     });
 });
 
