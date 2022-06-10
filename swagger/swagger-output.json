@@ -39,7 +39,7 @@
           }
         },
         "security": {
-          "google_id_token": []
+          "google_id_token": [ "read", "write" ]
         }
       },
       "post": {
