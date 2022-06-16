@@ -5,16 +5,6 @@
     "description": "This is an API Built to keep track of user recipes and user data<br><br>You need to log in before you can receive request data.<br><br><a href='https://dry-river-36052.herokuapp.com/'>Login User</a><br><br><a href='https://dry-river-36052.herokuapp.com/auth/logout'>Logout User</a>",
     "version": "1.0.0"
   },
-  "securityDefinitions": {
-    "google_id_token": {
-      "authorizationUrl": "",
-      "flow": "implicit",
-      "type": "oauth2",
-      "x-google-issuer": "https://accounts.google.com",
-      "x-google-jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
-      "x-google-audiences": "195072594556-r50bm300rmvalnp6c6dvl85icf7ahj6c.apps.googleusercontent.com"
-    }
-  },
   "host": "dry-river-36052.herokuapp.com",
   "basePath": "/",
   "schemes": [
@@ -34,12 +24,12 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        },
-        "security": {
-          "google_id_token": [ "read", "write" ]
         }
       },
       "post": {
@@ -90,7 +80,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request, Username already exists"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
@@ -118,7 +111,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request, Username is required as Alpha in path"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
@@ -181,7 +177,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request, Username is required as Alpha in path"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
@@ -207,7 +206,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request, Username is required as Alpha in path"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
@@ -227,6 +229,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
@@ -311,7 +316,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request, Recipe already exists"
+          },
+          "401": {
+            "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
           },
           "500": {
             "description": "Internal Server Error"
