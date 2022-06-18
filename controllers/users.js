@@ -91,7 +91,7 @@ function updateUser(req, res) {
         user.exists({ userName: newUser.userName }, function (err, doc) {
             if (err) {
                 res.send(err);
-            } else if (doc !== null) {
+            } else if (doc !== null && username !== newUser.username) {
                 const newerror = createError(400, 'Username already exists');
                 res.status(400).send(newerror);
             } else {
