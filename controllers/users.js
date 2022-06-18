@@ -88,8 +88,17 @@ function updateUser(req, res) {
         }
         const newUser = new user(req.body);
 
-        connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
-            res.status(200).send(`{"Successfully Updated User": "${username}"}`);
+        user.exists({ userName: newUser.userName }, function (err, doc) {
+            if (err) {
+                res.send(err);
+            } else if (doc !== null) {
+                const newerror = createError(400, 'Username already exists');
+                res.status(400).send(newerror);
+            } else {
+                connect.getUsersCollection().findOneAndUpdate({ userName: username }, newUser, { upsert: true }, () => {
+                    res.status(200).send(`{"Successfully Updated User": "${newUser.userName}"}`);
+                });
+            }
         });
         /*  #swagger.parameters['username'] = {
                 in: 'path',
