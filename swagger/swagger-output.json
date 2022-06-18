@@ -80,7 +80,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request, Username already exists"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
@@ -111,7 +111,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request, Username is required as Alpha in path"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
@@ -177,7 +177,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request, Username is required as Alpha in path"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
@@ -206,7 +206,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request, Username is required as Alpha in path"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
@@ -316,7 +316,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request, Recipe already exists"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, { Response: 'The request is not authorized because the user is not authenticated.', Solution: 'Please login at https://dry-river-36052.herokuapp.com/ ' }"
