@@ -5,7 +5,7 @@ exports.userValidation = [
     body('fName', 'Names are formatted as Alpha characters for "en-US" locale.').isAlpha('en-US', { ignore: ' -,' }),
     body('lName', 'Names are formatted as Alpha characters for "en-US" locale.').isAlpha('en-US', { ignore: ' -,' }),
     body('email', "Email address isn't formatted properly.").isEmail({ domain_specific_validation: true }),
-    body('userName', 'Usernames are limited to 20 characters and are Alpha characters for "en-US" locale.').isAlpha('en-US', { ignore: ' -,' }).isAlpha('en-US', { ignore: ' -,' }),
+    body('userName', 'Usernames are limited to 20 characters and are Alpha characters for "en-US" locale.').isAlpha('en-US', { ignore: ' -,' }),
     body('password', 'Passwords should be include at least 8 characters, 1 lowercase, 1 uppercase, 1 number, and 1 symbol.').isStrongPassword()
 ];
 
